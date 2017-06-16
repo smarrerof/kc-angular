@@ -59,8 +59,14 @@ export class ProductService {
     |       state=x (siendo x el estado)                               |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+    let filterQuery = '';
+    if (filter) {
+      filterQuery = filter.text ? `&q=${filter.text}` : '';
+      filterQuery += filter.category && filter.category !== '0' ? `&category.id=${filter.category}` : '';
+    }
+
     return this._http
-      .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC`)
+      .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC${filterQuery}`)
       .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
   }
 
