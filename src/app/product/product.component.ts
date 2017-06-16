@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Product } from '../product';
 
@@ -20,6 +20,10 @@ export class ProductComponent {
   | ha hecho clic. Y puesto que dicho clic se realiza en el template |
   | de este componente, necesitas, además, un manejador para el      |
   | mismo.                                                           |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/  
+  @Output() productSelected: EventEmitter<number> = new EventEmitter<number>();
 
+  onProductClick(productId): void {
+    this.productSelected.emit(productId);
+  }
 }
