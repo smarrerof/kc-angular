@@ -15,7 +15,8 @@
       *ngFor="let product of products"
       [data]="product"      
       class="column"
-      (productSelected)="onProductSelected($event)">
+      (productSelected)="onProductSelected($event)"
+      (setFavorite)="onSetFavorite($event)">
     </app-product>
   </div>
   <div *ngIf="products?.length === 0" class="text-center">

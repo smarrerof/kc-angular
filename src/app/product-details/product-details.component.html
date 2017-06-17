@@ -1,6 +1,7 @@
 <div class="row" *ngIf="product">
-  <div class="medium-4 columns">
+  <div class="medium-4 columns folder">
     <img [src]="product.photo" class="thumbnail" />
+    <i aria-hidden="true" class="fav fa fa-2" [ngClass]="isFavorite(product.id)" (click)="onFavoriteClick(product.id)"></i>
   </div>
   <div class="medium-8 columns">
     <h3>{{ product.name }}</h3>

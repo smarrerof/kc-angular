@@ -1,3 +1,14 @@
+div {
+  position: relative;
+}
+i {
+  color: red;
+  cursor: pointer;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 10;  
+}
 img:hover {
   cursor: pointer;
 }

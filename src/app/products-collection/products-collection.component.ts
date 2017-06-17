@@ -46,4 +46,23 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
   onProductSelected(productId: number): void {
     this._router.navigate(['/products', productId]);
   }
+
+  onSetFavorite(productId: number): void {
+    // Recuperamos la lista de favoritos y la inicializamos si es nula
+    let favorites: number[] = JSON.parse(localStorage.getItem('favorites'));
+    if (favorites === null) {
+      favorites = [];
+    }
+
+    // Buscamos el producto en lista de favoritos para invertir la selección.
+    const indexOf = favorites.indexOf(productId);
+    if (indexOf === -1) {
+      favorites.push(productId);
+    } else {
+      favorites.splice(indexOf, 1);
+    }
+
+    // Guardamos de nuevo la lista de favoritos
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }
 }

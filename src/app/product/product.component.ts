@@ -20,10 +20,26 @@ export class ProductComponent {
   | ha hecho clic. Y puesto que dicho clic se realiza en el template |
   | de este componente, necesitas, además, un manejador para el      |
   | mismo.                                                           |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/  
+  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   @Output() productSelected: EventEmitter<number> = new EventEmitter<number>();
+  @Output() setFavorite: EventEmitter<number> = new EventEmitter<number>();
 
-  onProductClick(productId): void {
+  onProductClick(productId: number): void {
     this.productSelected.emit(productId);
+  }
+
+  onFavoriteClick(productId: number): void {
+    this.setFavorite.emit(productId);
+  }
+
+  isFavorite(productId: number): string {
+    // Recuperamos la lista de favoritos y la inicializamos si es nula
+    let favorites: number[] = JSON.parse(localStorage.getItem('favorites'));
+    if (favorites === null) {
+      favorites = [];
+    }
+
+    // Buscamos el producto en lista de favoritos
+    return favorites.indexOf(productId) === -1 ? 'fa-heart-o' : 'fa-heart';
   }
 }

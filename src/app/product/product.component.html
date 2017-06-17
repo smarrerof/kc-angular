@@ -1,5 +1,6 @@
 <div *ngIf="data">
   <img [src]="data.photo" class="thumbnail" />
+  <i aria-hidden="true" class="fa" [ngClass]="isFavorite(data.id)" (click)="onFavoriteClick(data.id)"></i>
 
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
   | Green Path                                                       |
