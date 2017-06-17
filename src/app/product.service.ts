@@ -63,6 +63,7 @@ export class ProductService {
     if (filter) {
       filterQuery = filter.text ? `&q=${filter.text}` : '';
       filterQuery += filter.category && filter.category !== '0' ? `&category.id=${filter.category}` : '';
+      filterQuery += filter.state ? `&state=${filter.state}` : '';
     }
 
     return this._http
