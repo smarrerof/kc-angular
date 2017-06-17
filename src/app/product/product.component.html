@@ -22,7 +22,7 @@
     [class.secondary]="data.state === 'sold'"
     (click)="onProductClick(data.id)">
       <span *ngIf="data.state === 'selling'">
-        Comprar por {{ data.price }} €
+        Comprar por {{ data.price | price }} €
       </span>
       <span *ngIf="data.state === 'sold'">
         Ver detalles
