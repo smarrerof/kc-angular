@@ -22,6 +22,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserService } from './user.service';
 import { PublicationDatePipe } from 'app/publication-date.pipe';
 import { PricePipe } from 'app/price.pipe';
+import { FavoriteService } from './favorite.service';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 | Blue Path                                                        |
@@ -56,7 +57,8 @@ import { PricePipe } from 'app/price.pipe';
     ProductDetailsResolveService,
     ProductService,
     SoldProductsResolveService,
-    UserService
+    UserService,
+    FavoriteService
   ],
   exports: [
     PublicationDatePipe

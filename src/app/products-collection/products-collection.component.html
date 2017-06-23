@@ -16,7 +16,7 @@
       [data]="product"      
       class="column"
       (productSelected)="onProductSelected($event)"
-      (setFavorite)="onSetFavorite($event)">
+      (toggleFavorite)="onToggleFavorite($event)">
     </app-product>
   </div>
   <div *ngIf="products?.length === 0" class="text-center">

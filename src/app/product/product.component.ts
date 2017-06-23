@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Product } from '../product';
+import { FavoriteService } from '../favorite.service';
 
 @Component({
   selector: 'app-product',
@@ -22,24 +23,19 @@ export class ProductComponent {
   | mismo.                                                           |
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   @Output() productSelected: EventEmitter<number> = new EventEmitter<number>();
-  @Output() setFavorite: EventEmitter<number> = new EventEmitter<number>();
+  @Output() toggleFavorite: EventEmitter<number> = new EventEmitter<number>();
+
+  constructor(private _favoriteService: FavoriteService) { }
 
   onProductClick(productId: number): void {
     this.productSelected.emit(productId);
   }
 
   onFavoriteClick(productId: number): void {
-    this.setFavorite.emit(productId);
+    this.toggleFavorite.emit(productId);
   }
 
-  isFavorite(productId: number): string {
-    // Recuperamos la lista de favoritos y la inicializamos si es nula
-    let favorites: number[] = JSON.parse(localStorage.getItem('favorites'));
-    if (favorites === null) {
-      favorites = [];
-    }
-
-    // Buscamos el producto en lista de favoritos
-    return favorites.indexOf(productId) === -1 ? 'fa-heart-o' : 'fa-heart';
+  public isFavorite(productId: number): string {
+    return this._favoriteService.isFavorite(productId) ? 'fa-heart' : 'fa-heart-o';
   }
 }

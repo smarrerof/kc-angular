@@ -6,6 +6,7 @@ import { ConfirmationService } from 'primeng/primeng';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { FavoriteService } from '../favorite.service';
 
 @Component({
   selector: 'app-product-details',
@@ -21,7 +22,8 @@ export class ProductDetailsComponent implements OnDestroy, OnInit {
     private _productService: ProductService,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _confirmationService: ConfirmationService) { }
+    private _confirmationService: ConfirmationService,
+    private _favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
     this._route.data.forEach((data: { product: Product }) => this.product = data.product);
@@ -60,33 +62,10 @@ export class ProductDetailsComponent implements OnDestroy, OnInit {
   }
 
   onFavoriteClick(productId: number): void {
-    // Recuperamos la lista de favoritos y la inicializamos si es nula
-    let favorites: number[] = JSON.parse(localStorage.getItem('favorites'));
-    if (favorites === null) {
-      favorites = [];
-    }
-
-    // Buscamos el producto en lista de favoritos para invertir la selección.
-    const indexOf = favorites.indexOf(productId);
-    if (indexOf === -1) {
-      favorites.push(productId);
-    } else {
-      favorites.splice(indexOf, 1);
-    }
-
-    // Guardamos de nuevo la lista de favoritos
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    this._favoriteService.toggleFavorite(productId);
   }
 
   isFavorite(productId: number): string {
-    // Recuperamos la lista de favoritos y la inicializamos si es nula
-    let favorites: number[] = JSON.parse(localStorage.getItem('favorites'));
-    if (favorites === null) {
-      favorites = [];
-    }
-
-    // Buscamos el producto en lista de favoritos
-    return favorites.indexOf(productId) === -1 ? 'fa-heart-o' : 'fa-heart';
+    return this._favoriteService.isFavorite(productId) ? 'fa-heart' : 'fa-heart-o';
   }
-
 }

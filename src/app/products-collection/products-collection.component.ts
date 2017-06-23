@@ -6,6 +6,7 @@ import 'rxjs/add/operator/switchMap';
 import { Product } from '../product';
 import { ProductFilter } from '../product-filter';
 import { ProductService } from '../product.service';
+import { FavoriteService } from '../favorite.service';
 
 @Component({
   selector: 'app-products-collection',
@@ -17,7 +18,10 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
   products: Product[];
   private _filterStream$: Subject<ProductFilter> = new Subject;
 
-  constructor(private _productService: ProductService, private _router: Router) { }
+  constructor(
+    private _productService: ProductService, 
+    private _router: Router,
+    private _favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
     this._filterStream$
@@ -47,22 +51,7 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
     this._router.navigate(['/products', productId]);
   }
 
-  onSetFavorite(productId: number): void {
-    // Recuperamos la lista de favoritos y la inicializamos si es nula
-    let favorites: number[] = JSON.parse(localStorage.getItem('favorites'));
-    if (favorites === null) {
-      favorites = [];
-    }
-
-    // Buscamos el producto en lista de favoritos para invertir la selección.
-    const indexOf = favorites.indexOf(productId);
-    if (indexOf === -1) {
-      favorites.push(productId);
-    } else {
-      favorites.splice(indexOf, 1);
-    }
-
-    // Guardamos de nuevo la lista de favoritos
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+  onToggleFavorite(productId: number): void {
+    this._favoriteService.toggleFavorite(productId);
   }
 }
