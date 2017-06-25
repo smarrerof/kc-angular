@@ -1,14 +1,27 @@
 <div>
   <div class="row">
-    <div class="small-6 medium-2 large-3 columns">
+    <div class="small-4 medium-4 large-3 columns">
       <input [(ngModel)]="productFilter.text" type="text" placeholder="Pe. Uncharted">
     </div>
-    <div class="small-6 medium-2 large-3 columns">
+    <div class="small-4 medium-4 large-3 columns">
       <select [(ngModel)]="productFilter.category">
         <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
       </select>
     </div>
-    <div class="small-12 medium-3 large-2 columns">
+    <div class="small-4 medium-4 large-3 columns">
+      <select [(ngModel)]="productFilter.state">
+        <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
+      </select>
+    </div>  
+  </div>
+  <div class="row">
+    <div class="small-6 medium-4 large-3 columns">      
+        <input [(ngModel)]="productFilter.minPrice" type="number" placeholder="Pe. 25">      
+    </div>  
+    <div class="small-6 medium-4 large-3 columns">      
+        <input [(ngModel)]="productFilter.maxPrice" type="number" placeholder="Pe. 125">      
+    </div>  
+    <div class="small-12 medium-12 large-3 columns">
       <button (click)="notifyHost()" class="button expanded">Buscar</button>
     </div>
   </div>

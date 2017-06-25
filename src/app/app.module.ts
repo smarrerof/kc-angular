@@ -23,6 +23,8 @@ import { UserService } from './user.service';
 import { PublicationDatePipe } from 'app/publication-date.pipe';
 import { PricePipe } from 'app/price.pipe';
 import { FavoriteService } from './favorite.service';
+import { StateService } from './state.service';
+import { SortPipe } from './sort.pipe';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 | Blue Path                                                        |
@@ -40,7 +42,8 @@ import { FavoriteService } from './favorite.service';
     ProductsCollectionComponent,
     UserProfileComponent,
     PublicationDatePipe,
-    PricePipe
+    PricePipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import { FavoriteService } from './favorite.service';
     ProductService,
     SoldProductsResolveService,
     UserService,
-    FavoriteService
+    FavoriteService,
+    StateService
   ],
   exports: [
     PublicationDatePipe

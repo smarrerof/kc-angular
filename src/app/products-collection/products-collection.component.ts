@@ -7,6 +7,7 @@ import { Product } from '../product';
 import { ProductFilter } from '../product-filter';
 import { ProductService } from '../product.service';
 import { FavoriteService } from '../favorite.service';
+import { ProductSort } from '../product-sort';
 
 @Component({
   selector: 'app-products-collection',
@@ -17,6 +18,11 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
 
   products: Product[];
   private _filterStream$: Subject<ProductFilter> = new Subject;
+  private _productSort: ProductSort;
+
+  get params() {
+    return this._productSort;
+  }
 
   constructor(
     private _productService: ProductService, 
@@ -24,6 +30,11 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
     private _favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
+    this._productSort = <ProductSort>{
+      properyName: '',
+      order: false
+    };
+
     this._filterStream$
       .switchMap((filter: ProductFilter) => this._productService.getProducts(filter))
       .subscribe((products: Product[]) => this.products = products);
@@ -53,5 +64,14 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
 
   onToggleFavorite(productId: number): void {
     this._favoriteService.toggleFavorite(productId);
+  }
+
+  onSortChange(name: string): void {    
+    if (this._productSort.properyName === name) {
+      this._productSort.order = !this._productSort.order;
+    } else {
+      this._productSort.properyName = name;
+      this._productSort.order = true;
+    }  
   }
 }
