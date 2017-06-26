@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ConfirmationService } from 'primeng/primeng';
 
 import { Product } from '../product';
+import { ProductFilter } from '../product-filter';
 import { ProductService } from '../product.service';
 import { FavoriteService } from '../favorite.service';
 
@@ -16,6 +17,8 @@ import { FavoriteService } from '../favorite.service';
 export class ProductDetailsComponent implements OnDestroy, OnInit {
 
   product: Product;
+  products: Product[];
+
   private _productSubscription: Subscription;
 
   constructor(
@@ -26,8 +29,17 @@ export class ProductDetailsComponent implements OnDestroy, OnInit {
     private _favoriteService: FavoriteService) { }
 
   ngOnInit(): void {
-    this._route.data.forEach((data: { product: Product }) => this.product = data.product);
-    window.scrollTo(0, 0);
+    this._route.data.forEach((data: { product: Product }) => {
+      this.product = data.product
+
+      // Una vez cargado el producto actual podemos traer la lista de productos relacionados
+      console.log('seller', this.product.seller.id);
+      const productFilter: ProductFilter = <ProductFilter>{
+        seller: this.product.seller.id
+      };
+      this._productService.getProducts(productFilter).subscribe((products: Product[]) => this.products = products);;
+    });
+    window.scrollTo(0, 0);    
   }
 
   ngOnDestroy(): void {
@@ -67,5 +79,9 @@ export class ProductDetailsComponent implements OnDestroy, OnInit {
 
   isFavorite(productId: number): string {
     return this._favoriteService.isFavorite(productId) ? 'fa-heart' : 'fa-heart-o';
+  }
+
+  onProductSelected(productId: number): void {
+    this._router.navigate(['/products', productId]);
   }
 }

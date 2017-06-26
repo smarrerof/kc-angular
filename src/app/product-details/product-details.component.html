@@ -40,8 +40,27 @@
             class="button large expanded">
       Comprar por {{ product.price | price }} €
     </button>
-    <button (click)="goBack()" class="warning button expanded">Volver</button>
+    
   </div>
   <!-- Confirmation alert -->
   <p-confirmDialog header="Confirmación de compra" width="625" #cd></p-confirmDialog>
+
+  <div class="medium-8 columns">
+    <h3>Más artículos del vendedor</h3>
+    <div *ngIf="products?.length > 0" class="small-up-2 medium-up-4 large-up-6">
+      <app-product
+        *ngFor="let product of products"
+        [data]="product"      
+        class="column"
+        (productSelected)="onProductSelected($event)"
+        (toggleFavorite)="onFavoriteClick($event)">
+      </app-product>
+    </div>
+    <div *ngIf="products?.length === 0" class="text-center">
+      <span>No se han encontrado productos.</span>
+    </div>
+    <button (click)="goBack()" class="warning button expanded">Volver</button>
+  </div>
 </div>
+
+

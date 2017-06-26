@@ -72,6 +72,9 @@ export class ProductService {
       if (filter.state) {
         search.set('state', filter.state);
       }
+      if (filter.seller) {
+        search.set('seller.id', filter.seller.toString());
+      }
     }
 
     let options = new RequestOptions();
