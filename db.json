@@ -17,6 +17,20 @@
       "name": "Libros"
     }
   ],
+  "states": [
+    {
+      "id": "",
+      "name": "-"
+    },
+    {
+      "id": "sold",
+      "name": "Sold"
+    },
+    {
+      "id": "selling",
+      "name": "Selling"
+    }
+  ],
   "products": [
     {
       "id": 1,

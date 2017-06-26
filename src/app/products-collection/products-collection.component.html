@@ -1,7 +1,7 @@
 <div class="row">
   <div class="small-12 large-12 columns">
     <app-product-filter (onSearch)="filterCollection($event)"></app-product-filter>
-  </div>
+  </div> 
   <div *ngIf="products?.length > 0" class="small-up-2 medium-up-4 large-up-6">
 
     <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -12,7 +12,7 @@
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
     <app-product
-      *ngFor="let product of products"
+      *ngFor="let product of products | productsort:filter"
       [data]="product"      
       class="column"
       (productSelected)="onProductSelected($event)"

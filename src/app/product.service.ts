@@ -58,7 +58,7 @@ export class ProductService {
     |   - Búsqueda por estado:                                         |
     |       state=x (siendo x el estado)                               |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-   
+
     let search = new URLSearchParams();
     search.set('_sort', 'publishedDate');
     search.set('_order', 'DESC');
@@ -71,6 +71,13 @@ export class ProductService {
       }
       if (filter.state) {
         search.set('state', filter.state);
+      }
+      if (filter.minPrice) {
+        search.set('price_gte', filter.minPrice.toString());
+      }
+      if (filter.maxPrice) {
+        search.set('price_lte', filter.maxPrice.toString());
+
       }
       if (filter.seller) {
         search.set('seller.id', filter.seller.toString());

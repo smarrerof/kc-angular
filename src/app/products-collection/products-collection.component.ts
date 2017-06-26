@@ -16,10 +16,11 @@ import { FavoriteService } from '../favorite.service';
 export class ProductsCollectionComponent implements OnDestroy, OnInit {
 
   products: Product[];
+  filter: ProductFilter;
   private _filterStream$: Subject<ProductFilter> = new Subject;
 
   constructor(
-    private _productService: ProductService, 
+    private _productService: ProductService,
     private _router: Router,
     private _favoriteService: FavoriteService) { }
 
@@ -35,6 +36,7 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
   }
 
   filterCollection(filter: ProductFilter): void {
+    this.filter = filter;
     this._filterStream$.next(filter);
   }
 
