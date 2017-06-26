@@ -1,28 +1,57 @@
 <div>
   <div class="row">
-    <div class="small-4 medium-4 large-3 columns">
-      <input [(ngModel)]="productFilter.text" type="text" placeholder="Pe. Uncharted">
+    <div class="small-6 medium-4 large-3 columns">
+      <input [(ngModel)]="productFilter.text" type="text" placeholder="Nombre, pe. Uncharted">
     </div>
-    <div class="small-4 medium-4 large-3 columns">
+    <div class="small-6 medium-4 large-3 columns end">
       <select [(ngModel)]="productFilter.category">
         <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
       </select>
     </div>
-    <div class="small-4 medium-4 large-3 columns">
+    
+  </div>
+  <div class="row">
+    <div class="small-6 medium-4 large-3 columns">
       <select [(ngModel)]="productFilter.state">
         <option *ngFor="let state of states" [value]="state.id">{{ state.name }}</option>
       </select>
     </div>  
-  </div>
-  <div class="row">
     <div class="small-6 medium-4 large-3 columns">      
-        <input [(ngModel)]="productFilter.minPrice" type="number" placeholder="Pe. 25">      
+        <input [(ngModel)]="productFilter.minPrice" type="number" placeholder="Precio mínimo, pe. 25">
     </div>  
     <div class="small-6 medium-4 large-3 columns">      
-        <input [(ngModel)]="productFilter.maxPrice" type="number" placeholder="Pe. 125">      
+        <input [(ngModel)]="productFilter.maxPrice" type="number" placeholder="Precio máximo, pe. 125">
     </div>  
     <div class="small-12 medium-12 large-3 columns">
       <button (click)="notifyHost()" class="button expanded">Buscar</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 medium-12 large-3 columns">
+      <div class="row">
+      <div class="small-6 columns">
+      <button type="button" 
+        class="button small expanded"
+        (click)="onSortChange('name')">
+        Nombre
+        <i class="fa fa-caret-dow order-icon" 
+          aria-hidden="true"
+          [ngClass]="{'fa-caret-down': productFilter?.name === 'name' && !productFilter.order,
+          'fa-caret-up': productFilter?.name === 'name' && productFilter.order}"></i>
+      </button>
+      </div>
+      <div class="small-6 columns">
+      <button type="button" 
+        class="button small expanded"
+        (click)="onSortChange('price')">
+        Precio
+        <i class="fa fa-caret-dow order-icon" 
+          aria-hidden="true"
+          [ngClass]="{'fa-caret-down': productFilter?.name === 'price' && !productFilter.order,
+          'fa-caret-up': productFilter?.name === 'price' && productFilter.order}"></i>
+      </button>
+      </div>   
+      </div>   
     </div>
   </div>
 </div>

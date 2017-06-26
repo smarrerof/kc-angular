@@ -24,7 +24,7 @@ import { PublicationDatePipe } from 'app/publication-date.pipe';
 import { PricePipe } from 'app/price.pipe';
 import { FavoriteService } from './favorite.service';
 import { StateService } from './state.service';
-import { SortPipe } from './sort.pipe';
+import { ProductSortPipe } from './product-sort.pipe';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 | Blue Path                                                        |
@@ -43,7 +43,7 @@ import { SortPipe } from './sort.pipe';
     UserProfileComponent,
     PublicationDatePipe,
     PricePipe,
-    SortPipe
+    ProductSortPipe
   ],
   imports: [
     BrowserModule,

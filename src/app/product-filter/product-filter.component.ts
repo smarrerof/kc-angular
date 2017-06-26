@@ -24,7 +24,7 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
   private _statesSubscription: Subscription;
 
   constructor(
-    private _categoryService: CategoryService, 
+    private _categoryService: CategoryService,
     private _stateService: StateService) { }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
       .subscribe((data: Category[]) => this.categories = data );
     this._statesSubscription = this._stateService
       .getStates()
-      .subscribe((data: State[]) => this.states = data );      
+      .subscribe((data: State[]) => this.states = data );
   }
 
   ngOnDestroy(): void {
@@ -43,5 +43,15 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
 
   notifyHost(): void {
     this.onSearch.emit(this.productFilter);
+  }
+
+  onSortChange(name: string): void {
+    if (this.productFilter.name === name) {
+      this.productFilter.order = !this.productFilter.order;
+    } else {
+      this.productFilter.name = name;
+      this.productFilter.order = true;
+    }
+    console.log('onSortChange', this.productFilter);
   }
 }
