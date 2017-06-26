@@ -21,7 +21,6 @@ import { SoldProductsResolveService } from './sold-products-resolve.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserService } from './user.service';
 import { PublicationDatePipe } from 'app/publication-date.pipe';
-import { PricePipe } from 'app/price.pipe';
 import { FavoriteService } from './favorite.service';
 import { StateService } from './state.service';
 import { ProductSortPipe } from './product-sort.pipe';
@@ -42,7 +41,6 @@ import { ProductSortPipe } from './product-sort.pipe';
     ProductsCollectionComponent,
     UserProfileComponent,
     PublicationDatePipe,
-    PricePipe,
     ProductSortPipe
   ],
   imports: [

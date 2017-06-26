@@ -4,13 +4,11 @@ import { Product } from './product';
 import { ProductFilter } from './product-filter';
 
 @Pipe({
-  name: 'productsort'/*, 
-  pure: false*/
+  name: 'productsort'
 })
 export class ProductSortPipe implements PipeTransform {
 
   transform(products: Product[], filter: ProductFilter): any {
-    console.log('ProductSortPipe:transform');
     if (!products) {
       return [];
     }

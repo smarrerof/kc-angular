@@ -38,7 +38,7 @@
     <button *ngIf="product.state === 'selling'"
             (click)="showPurchaseWarning()"
             class="button large expanded">
-      Comprar por {{ product.price | price }} €
+      Comprar por {{ product.price | number:'1.2-2' }} €
     </button>
     
   </div>

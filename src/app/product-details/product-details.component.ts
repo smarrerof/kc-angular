@@ -30,16 +30,15 @@ export class ProductDetailsComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this._route.data.forEach((data: { product: Product }) => {
-      this.product = data.product
+      this.product = data.product;
 
       // Una vez cargado el producto actual podemos traer la lista de productos relacionados
-      console.log('seller', this.product.seller.id);
       const productFilter: ProductFilter = <ProductFilter>{
         seller: this.product.seller.id
       };
       this._productService.getProducts(productFilter).subscribe((products: Product[]) => this.products = products);;
     });
-    window.scrollTo(0, 0);    
+    window.scrollTo(0, 0);
   }
 
   ngOnDestroy(): void {

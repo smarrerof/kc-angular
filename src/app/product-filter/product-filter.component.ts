@@ -52,6 +52,5 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
       this.productFilter.name = name;
       this.productFilter.order = true;
     }
-    console.log('onSortChange', this.productFilter);
   }
 }
