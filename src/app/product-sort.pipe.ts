@@ -13,7 +13,7 @@ export class ProductSortPipe implements PipeTransform {
       return [];
     }
 
-    if (!filter || filter.name === '') {
+    if (!filter || filter.name === undefined || filter.name === '') {
       return products;
     }
 
@@ -28,6 +28,6 @@ export class ProductSortPipe implements PipeTransform {
       }
     });
 
-    return products;
+    return sorted;
   }
 }
