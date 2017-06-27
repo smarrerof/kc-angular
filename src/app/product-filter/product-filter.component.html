@@ -36,8 +36,8 @@
         Nombre
         <i class="fa fa-caret-dow order-icon" 
           aria-hidden="true"
-          [ngClass]="{'fa-caret-down': productFilter?.name === 'name' && !productFilter.order,
-          'fa-caret-up': productFilter?.name === 'name' && productFilter.order}"></i>
+          [ngClass]="{'fa-caret-down': productSort?.name === 'name' && !productSort.order,
+          'fa-caret-up': productSort?.name === 'name' && productSort.order}"></i>
       </button>
       </div>
       <div class="small-6 columns">
@@ -47,8 +47,8 @@
         Precio
         <i class="fa fa-caret-dow order-icon" 
           aria-hidden="true"
-          [ngClass]="{'fa-caret-down': productFilter?.name === 'price' && !productFilter.order,
-          'fa-caret-up': productFilter?.name === 'price' && productFilter.order}"></i>
+          [ngClass]="{'fa-caret-down': productSort?.name === 'price' && !productSort.order,
+          'fa-caret-up': productSort?.name === 'price' && productSort.order}"></i>
       </button>
       </div>   
       </div>   

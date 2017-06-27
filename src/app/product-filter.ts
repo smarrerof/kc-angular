@@ -7,7 +7,4 @@ export interface ProductFilter {
   minPrice?: number;
   maxPrice?: number;
   seller?: number;
-  // Ordenación básica
-  name?: string;
-  order?: boolean;
 }

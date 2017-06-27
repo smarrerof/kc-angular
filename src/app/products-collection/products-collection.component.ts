@@ -5,6 +5,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { Product } from '../product';
 import { ProductFilter } from '../product-filter';
+import { ProductSort } from '../product-sort';
 import { ProductService } from '../product.service';
 import { FavoriteService } from '../favorite.service';
 
@@ -17,6 +18,7 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
 
   products: Product[];
   filter: ProductFilter;
+  sort: ProductSort;
   private _filterStream$: Subject<ProductFilter> = new Subject;
 
   constructor(
@@ -38,6 +40,10 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
   filterCollection(filter: ProductFilter): void {
     this.filter = filter;
     this._filterStream$.next(filter);
+  }
+
+  sortCollection(sort: ProductSort): void {
+    this.sort = sort;
   }
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|

@@ -6,6 +6,7 @@ import { CategoryService } from '../category.service';
 import { State } from '../state';
 import { StateService } from '../state.service';
 import { ProductFilter } from '../product-filter';
+import { ProductSort } from '../product-sort';
 
 @Component({
   selector: 'app-product-filter',
@@ -15,8 +16,10 @@ import { ProductFilter } from '../product-filter';
 export class ProductFilterComponent implements OnDestroy, OnInit {
 
   @Output() onSearch: EventEmitter<ProductFilter> = new EventEmitter();
+  @Output() onSort: EventEmitter<ProductSort> = new EventEmitter();
 
   productFilter: ProductFilter = {};
+  productSort: ProductSort = {};
   categories: Category[];
   states: State[];
 
@@ -46,11 +49,16 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
   }
 
   onSortChange(name: string): void {
-    if (this.productFilter.name === name) {
-      this.productFilter.order = !this.productFilter.order;
+    if (this.productSort.name === name) {
+      this.productSort.order = !this.productSort.order;
     } else {
-      this.productFilter.name = name;
-      this.productFilter.order = true;
+      this.productSort.name = name;
+      this.productSort.order = true;
     }
+
+    this.onSort.emit(<ProductSort>{
+      name: this.productSort.name,
+      order: this.productSort.order
+    });
   }
 }

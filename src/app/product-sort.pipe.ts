@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { Product } from './product';
-import { ProductFilter } from './product-filter';
+import { ProductSort } from './product-sort';
 
 @Pipe({
   name: 'productsort'
 })
 export class ProductSortPipe implements PipeTransform {
 
-  transform(products: Product[], filter: ProductFilter): any {
+  transform(products: Product[], filter: ProductSort): any {
     if (!products) {
       return [];
     }
